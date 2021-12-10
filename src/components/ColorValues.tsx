@@ -1,11 +1,4 @@
-import { CopyIcon } from '@chakra-ui/icons'
-import {
-  Button,
-  Input,
-  InputGroup,
-  InputRightElement,
-  VStack,
-} from '@chakra-ui/react'
+import { VStack } from '@chakra-ui/react'
 
 import Value from './Value'
 

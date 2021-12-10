@@ -1,4 +1,4 @@
-import { ChakraProvider, Flex, theme, Box } from '@chakra-ui/react'
+import { ChakraProvider, Flex, Text, theme, Box, Link } from '@chakra-ui/react'
 import { useState } from 'react'
 import axios from 'axios'
 
@@ -12,11 +12,11 @@ export const App = () => {
     rgb: 'rgb(36, 177, 224)',
     hsl: 'hsl(195, 75%, 51%)',
     hsv: 'hsv(195, 84%, 88%)',
-    cmyk: 'cmyk(84, 21, 0, 12)'
+    cmyk: 'cmyk(84, 21, 0, 12)',
   }
   // TODO: have a random startColor
   const [color, setColor] = useState<Color>(startColor)
-  
+
   const getRandomHex = () => {
     let hex = ''
     for (let i = 0; i < 6; i++) {
@@ -26,7 +26,7 @@ export const App = () => {
     }
     return hex
   }
-  
+
   const handleClick: HandleClick = () => {
     const randomColor = getRandomHex()
     axios.get(apiURL + randomColor).then((data) => {
@@ -46,13 +46,24 @@ export const App = () => {
     <ChakraProvider theme={theme}>
       <Flex
         minH='100vh'
-        bgColor={'#' + (color.hex)}
+        bgColor={'#' + color.hex}
         align='center'
         justify='center'
       >
         <Box bgColor='white' p={4} rounded='xl' minW='300px'>
           <GenerateButton handleClick={handleClick} />
           <ColorValues color={color} />
+          <Text fontSize='xs' align='center'>
+            See the code on{' '}
+            <Link
+              href='https://github.com/crownedfoxes/random-colour-generator'
+              color='blue.400'
+              isExternal
+            >
+              GitHub
+            </Link>
+            .
+          </Text>
         </Box>
       </Flex>
     </ChakraProvider>

@@ -32,7 +32,7 @@ const ColorValues = ({ color }: Props) => {
   }
 
   return (
-    <VStack spacing={4} mt={4}>
+    <VStack spacing={4} my={4}>
       <Value color={color.hex} format='hex' copyColor={copyColor} />
       <Value color={color.rgb} format='rgb' copyColor={copyColor} />
       <Value color={color.hsl} format='hsl' copyColor={copyColor} />

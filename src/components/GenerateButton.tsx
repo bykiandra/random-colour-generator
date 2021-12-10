@@ -6,7 +6,7 @@ interface Props {
 
 const GenerateButton = ({ handleClick }: Props) => {
   return (
-    <Button onClick={handleClick}>Generate random colour</Button>
+    <Button w='100%' onClick={handleClick}>Generate random colour</Button>
   )
 }
 

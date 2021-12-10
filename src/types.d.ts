@@ -7,3 +7,5 @@ type Color = {
 }
 
 type HandleClick = () => void
+
+type CopyColor = (format: string) => void

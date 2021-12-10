@@ -3,9 +3,19 @@ import { useState } from 'react'
 import axios from 'axios'
 
 import GenerateButton from './components/GenerateButton'
+import ColorValues from './components/ColorValues'
 
 export const App = () => {
   const apiURL = 'https://www.thecolorapi.com/id?hex='
+  const startColor = {
+    hex: '24B1E0',
+    rgb: 'rgb(36, 177, 224)',
+    hsl: 'hsl(195, 75%, 51%)',
+    hsv: 'hsv(195, 84%, 88%)',
+    cmyk: 'cmyk(84, 21, 0, 12)'
+  }
+  // TODO: have a random startColor
+  const [color, setColor] = useState<Color>(startColor)
   
   const getRandomHex = () => {
     let hex = ''
@@ -17,7 +27,6 @@ export const App = () => {
     return hex
   }
   
-  const [color, setColor] = useState<Color | string>(getRandomHex())
   const handleClick: HandleClick = () => {
     const randomColor = getRandomHex()
     axios.get(apiURL + randomColor).then((data) => {
@@ -37,12 +46,13 @@ export const App = () => {
     <ChakraProvider theme={theme}>
       <Flex
         minH='100vh'
-        bgColor={'#' + (typeof color === 'string' ? color : color.hex)}
+        bgColor={'#' + (color.hex)}
         align='center'
         justify='center'
       >
-        <Box bgColor='white' p={4} rounded='xl'>
+        <Box bgColor='white' p={4} rounded='xl' minW='300px'>
           <GenerateButton handleClick={handleClick} />
+          <ColorValues color={color} />
         </Box>
       </Flex>
     </ChakraProvider>

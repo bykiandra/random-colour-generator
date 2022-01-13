@@ -1,4 +1,4 @@
-import { VStack } from '@chakra-ui/react'
+import { VStack, useToast } from '@chakra-ui/react'
 
 import Value from './Value'
 
@@ -7,6 +7,8 @@ interface Props {
 }
 
 const ColorValues = ({ color }: Props) => {
+  const toast = useToast()
+
   const copyColor: CopyColor = (format) => {
     let copiedColor = ''
     switch (format) {
@@ -29,6 +31,13 @@ const ColorValues = ({ color }: Props) => {
         return
     }
     navigator.clipboard.writeText(copiedColor)
+
+    toast({
+      description: `${copiedColor} copied to clipboard.`,
+      status: 'success',
+      duration: 3000,
+      isClosable: false
+    })
   }
 
   return (
